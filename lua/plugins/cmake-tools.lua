@@ -141,5 +141,8 @@ return {
 		})
 		-- Register keymaps
 		vim.keymap.set("n", "<leader>mb", "<cmd>CMakeBuild<cr>")
+		vim.keymap.set("n", "<leader>md", "<cmd>CMakeDebug<cr>")
+		vim.keymap.set("n", "<leader>mg", "<cmd>CMakeGenerate<cr>")
+		vim.keymap.set("n", "<leader>mc", "<cmd>CMakeClean<cr>")
 	end,
 }

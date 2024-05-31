@@ -63,7 +63,9 @@ return {
 								quit_on_exit = "success",
 							},
 						}, -- options to pass into the `overseer.new_task` command
-						on_new_task = function(task)
+						on_new_task = function(
+							_ --[[task]]
+						)
 							require("overseer").open({ enter = false, direction = "right" })
 						end, -- a function that gets overseer.Task when it is created, before calling `task:start`
 					},
@@ -111,7 +113,10 @@ return {
 								quit_on_exit = "success",
 							},
 						}, -- options to pass into the `overseer.new_task` command
-						on_new_task = function(task) end, -- a function that gets overseer.Task when it is created, before calling `task:start`
+						on_new_task = function(
+							_ --[[task]]
+						)
+						end, -- a function that gets overseer.Task when it is created, before calling `task:start`
 					},
 					terminal = {
 						name = "Main Terminal",

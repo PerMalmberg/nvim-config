@@ -46,11 +46,14 @@ return {
 		vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
 		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 		vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[ ] Find existing buffers" })
-		-- vim.keymap.set("n", "<leader>sS", builtin.git_status, { desc = "Git Status" })
-		-- vim.keymap.set("n", "<Leader>sn", require("telescope").extensions.notify.notify, { silent = true })
+
+		vim.keymap.set("n", "<leader>co", builtin.lsp_outgoing_calls, { desc = "Outgoing Calls (LSP)" })
+		vim.keymap.set("n", "<leader>ci", builtin.lsp_incoming_calls, { desc = "Incoming Calls (LSP)" })
+		vim.keymap.set("n", "<leader>cw", builtin.lsp_workspace_symbols, { desc = "Workspace Symbols (LSP)" })
+		vim.keymap.set("n", "<leader>cd", builtin.lsp_document_symbols, { desc = "Document Symbols (LSP)" })
+		-- vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Goto [d]efinition of word (LSP)" })
+		-- vim.keymap.set("n", "gt", builtin.lsp_type_definitions, { desc = "Goto [t]ype definition (LSP)" })
 
 		vim.keymap.set("n", "st", ":TodoTelescope<CR>", { noremap = true })
-		-- vim.keymap.set("n", "<Leader><tab>", builtin.commands, { noremap = false })
-		-- vim.keymap.set("n", "<leader>sm", ":Telescope harpoon marks<CR>", { desc = "Harpoon [M]arks" })
 	end,
 }

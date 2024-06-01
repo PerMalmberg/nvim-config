@@ -4,7 +4,7 @@ return {
 		dependencies = {
 			"mfussenegger/nvim-dap",
 		},
-		config = function(plugin, opts)
+		opts = function(plugin, opts)
 			local windows = vim.fn.has("win32") == 1
 
 			if windows then

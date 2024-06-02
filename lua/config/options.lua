@@ -5,4 +5,3 @@ local opt = vim.opt
 opt.tabstop = 4 -- Number of spaces tabs count for
 opt.shiftwidth = 4 -- Size if an indent
 opt.expandtab = false -- Don't fill with spaces
-opt.shellslash = true -- Use / instead of \ on Windows

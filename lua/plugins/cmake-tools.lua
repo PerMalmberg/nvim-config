@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		"stevearc/overseer.nvim",
 		"akinsho/toggleterm.nvim",
+		"folke/which-key.nvim",
 	},
 	config = function()
 		local osys = require("cmake-tools.osys")
@@ -141,10 +142,19 @@ return {
 			},
 			cmake_virtual_text_support = true, -- Show the target related to current file using virtual text (at right corner)
 		})
+
 		-- Register keymaps
-		vim.keymap.set("n", "<leader>mb", "<cmd>CMakeBuild<cr>")
-		vim.keymap.set("n", "<leader>md", "<cmd>CMakeDebug<cr>")
-		vim.keymap.set("n", "<leader>mg", "<cmd>CMakeGenerate<cr>")
-		vim.keymap.set("n", "<leader>mc", "<cmd>CMakeClean<cr>")
+		local wk = require("which-key")
+
+		wk.register({
+			["<leader>cb"] = {
+				name = "+cmake",
+				b = { "<cmd>CMakeBuild<cr>", "Build" },
+				d = { "<cmd>CMakeDebug<cr>", "Debug" },
+				g = { "<cmd>CMakeGenerate<cr>", "Generate" },
+				s = { "<cmd>CMakeSelectConfigurePreset<cr>", "Select Configure Preset" },
+				c = { "<cmd>CMakeClean<cr>", "Clean" },
+			},
+		})
 	end,
 }

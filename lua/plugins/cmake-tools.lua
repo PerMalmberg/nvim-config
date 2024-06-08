@@ -154,6 +154,8 @@ return {
 				g = { "<cmd>CMakeGenerate<cr>", "Generate" },
 				s = { "<cmd>CMakeSelectConfigurePreset<cr>", "Select Configure Preset" },
 				c = { "<cmd>CMakeClean<cr>", "Clean" },
+				e = { "<cmd>CMakeOpenExecutor<cr>", "Show Output" },
+				E = { "<cmd>CMakeCloseExecutor<cr>", "Close Output" },
 			},
 		})
 	end,

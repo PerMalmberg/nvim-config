@@ -8,26 +8,26 @@ return {
 	config = function()
 		local osys = require("cmake-tools.osys")
 		require("cmake-tools").setup({
-			cmake_command = "cmake", -- this is used to specify cmake command path
-			ctest_command = "ctest", -- this is used to specify ctest command path
-			cmake_regenerate_on_save = true, -- auto generate when save CMakeLists.txt
+			cmake_command = "cmake",                                 -- this is used to specify cmake command path
+			ctest_command = "ctest",                                 -- this is used to specify ctest command path
+			cmake_regenerate_on_save = true,                         -- auto generate when save CMakeLists.txt
 			cmake_generate_options = { "-DCMAKE_EXPORT_COMPILE_COMMANDS=1" }, -- this will be passed when invoke `CMakeGenerate`
-			cmake_build_options = {}, -- this will be passed when invoke `CMakeBuild`
+			cmake_build_options = {},                                -- this will be passed when invoke `CMakeBuild`
 			-- support macro expansion:
 			--       ${kit}
 			--       ${kitGenerator}
 			--       ${variant:xx}
 			cmake_build_directory = function()
 				return "build/${variant:buildType}"
-			end, -- this is used to specify generate directory for cmake, allows macro expansion, can be a string or a function returning the string, relative to cwd.
+			end,                             -- this is used to specify generate directory for cmake, allows macro expansion, can be a string or a function returning the string, relative to cwd.
 			cmake_soft_link_compile_commands = true, -- this will automatically make a soft link from compile commands file to project root dir
 			cmake_compile_commands_from_lsp = false, -- this will automatically set compile commands file location using lsp, to use it, please set `cmake_soft_link_compile_commands` to false
-			cmake_kits_path = nil, -- this is used to specify global cmake kits path, see CMakeKits for detailed usage
+			cmake_kits_path = nil,           -- this is used to specify global cmake kits path, see CMakeKits for detailed usage
 			cmake_variants_message = {
-				short = { show = true }, -- whether to show short message
+				short = { show = true },     -- whether to show short message
 				long = { show = true, max_length = 40 }, -- whether to show long message
 			},
-			cmake_dap_configuration = { -- debug settings for cmake
+			cmake_dap_configuration = {      -- debug settings for cmake
 				name = "cpp",
 				type = "codelldb",
 				request = "launch",
@@ -35,10 +35,10 @@ return {
 				runInTerminal = true,
 				console = "integratedTerminal",
 			},
-			cmake_executor = { -- executor to use
-				name = "quickfix", -- name of the executor
-				opts = {}, -- the options the executor will get, possible values depend on the executor type. See `default_opts` for possible values.
-				default_opts = { -- a list of default and possible values for executors
+			cmake_executor = {        -- executor to use
+				name = "quickfix",    -- name of the executor
+				opts = {},            -- the options the executor will get, possible values depend on the executor type. See `default_opts` for possible values.
+				default_opts = {      -- a list of default and possible values for executors
 					quickfix = {
 						show = "always", -- "always", "only_on_error"
 						position = "belowright", -- "vertical", "horizontal", "leftabove", "aboveleft", "rightbelow", "belowright", "topleft", "botright", use `:h vertical` for example to see help on them
@@ -82,12 +82,12 @@ return {
 						start_insert = false, -- If you want to enter terminal with :startinsert upon using :CMakeRun
 						focus = false, -- Focus on terminal when cmake task is launched.
 						do_not_add_newline = false, -- Do not hit enter on the command inserted when using :CMakeRun, allowing a chance to review or modify the command before hitting enter.
-					}, -- terminal executor uses the values in cmake_terminal
+					},            -- terminal executor uses the values in cmake_terminal
 				},
 			},
-			cmake_runner = { -- runner to use
+			cmake_runner = {   -- runner to use
 				name = "terminal", -- name of the runner
-				opts = {}, -- the options the runner will get, possible values depend on the runner type. See `default_opts` for possible values.
+				opts = {},     -- the options the runner will get, possible values depend on the runner type. See `default_opts` for possible values.
 				default_opts = { -- a list of default and possible values for runners
 					quickfix = {
 						show = "always", -- "always", "only_on_error"
@@ -141,22 +141,6 @@ return {
 				refresh_rate_ms = 100, -- how often to iterate icons
 			},
 			cmake_virtual_text_support = true, -- Show the target related to current file using virtual text (at right corner)
-		})
-
-		-- Register keymaps
-		local wk = require("which-key")
-
-		wk.register({
-			["<leader>cb"] = {
-				name = "+cmake",
-				b = { "<cmd>CMakeBuild<cr>", "Build" },
-				d = { "<cmd>CMakeDebug<cr>", "Debug" },
-				g = { "<cmd>CMakeGenerate<cr>", "Generate" },
-				s = { "<cmd>CMakeSelectConfigurePreset<cr>", "Select Configure Preset" },
-				c = { "<cmd>CMakeClean<cr>", "Clean" },
-				e = { "<cmd>CMakeOpenExecutor<cr>", "Show Output" },
-				E = { "<cmd>CMakeCloseExecutor<cr>", "Close Output" },
-			},
 		})
 	end,
 }

@@ -74,3 +74,8 @@ register_callback_for_filetype("go", function()
 		},
 	})
 end)
+
+-- Keymaps for navigator.
+wk.register({}, {
+	silent = true,
+})

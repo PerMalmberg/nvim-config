@@ -29,6 +29,7 @@ return {
 				disable_lsp = { "lua_ls" },
 			},
 			mason = true, -- Use Mason to install LSPs
+			default_mapping = false, -- Don't setup any keybindings, that's done in plugin/keymaps.lua
 		})
 
 		-- Disable nvim-cmp and nvim-autopairs in navigator floating windows

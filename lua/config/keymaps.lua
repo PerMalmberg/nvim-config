@@ -31,6 +31,12 @@ wk.register({
 	["<A-k>"] = { ":m '<-2<CR>gv=gv", "Move line down" },
 }, { silent = true, mode = "v" })
 
+wk.register({
+	["<leader>u"] = {
+		k = { "<cmd>Screenkey<cr>", "Toggle Screenkey" },
+	},
+})
+
 register_callback_for_filetype("cpp", function()
 	wk.register({
 		["<leader>cb"] = {
@@ -60,7 +66,7 @@ register_callback_for_filetype("go", function()
 			t = { ":GoTestPkg<CR>", "Test package" },
 			s = { ":lua require('go.alternate').switch(true, '')<CR>" },
 			v = { ":lua require('go.alternate').switch(true, 'vsplit')<CR>", "Open test vertically." },
-			h = { ":lua require('go.alternate').switch(true, 'ssplit')<CR>", "Open test horizontal." },
+			h = { ":lua require('go.alternate').switch(true, 'ssplit')<CR>", "Open test horizontally." },
 		},
 		{
 			buffer = 0,

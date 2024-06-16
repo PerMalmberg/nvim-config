@@ -1,9 +1,10 @@
 return {
 	"ray-x/navigator.lua",
+	enabled = true,
 	dependencies = {
 		{ "hrsh7th/nvim-cmp" },
 		{ "nvim-treesitter/nvim-treesitter" },
-		{ "ray-x/guihua.lua",               run = "cd lua/fzy && make" },
+		{ "ray-x/guihua.lua", run = "cd lua/fzy && make" },
 		{
 			"ray-x/go.nvim",
 			event = { "CmdlineEnter" },
@@ -22,8 +23,12 @@ return {
 		require("go").setup()
 		require("navigator").setup({
 			lsp_signature_help = true, -- enable ray-x/lsp_signature
-			lsp = { format_on_save = true },
-			mason = true,     -- Use Mason to install LSPs
+			lsp = {
+				format_on_save = true,
+				-- Disable lua_ls as it is better handled by lazydev.nvim.
+				disable_lsp = { "lua_ls" },
+			},
+			mason = true, -- Use Mason to install LSPs
 		})
 
 		-- Disable nvim-cmp and nvim-autopairs in navigator floating windows

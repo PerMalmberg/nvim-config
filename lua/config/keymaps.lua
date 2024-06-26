@@ -2,7 +2,6 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local map_global = vim.keymap.set
 local wk = require("which-key")
 
 ---@class LocalBufferCommand
@@ -11,14 +10,16 @@ local wk = require("which-key")
 ---@field cmd string
 ---@field opts vim.api.keyset.keymap?
 
----@param file_pattern string
+---@param file_pattern string[]
 ---@param callback function()
 local function register_callback_for_filetype(file_pattern, callback)
-	vim.api.nvim_create_autocmd("FileType", {
-		pattern = file_pattern,
-		callback = callback,
-		group = vim.api.nvim_create_augroup(file_pattern .. "_autocommands_callback", { clear = true }),
-	})
+	for _, pattern in ipairs(file_pattern) do
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = pattern,
+			callback = callback,
+			group = vim.api.nvim_create_augroup(pattern .. "_autocommands_callback", { clear = true }),
+		})
+	end
 end
 
 wk.register({
@@ -37,7 +38,7 @@ wk.register({
 	},
 })
 
-register_callback_for_filetype("cpp", function()
+register_callback_for_filetype({ "cpp", "cmake" }, function()
 	wk.register({
 		["<leader>cb"] = {
 			name = "+CMake",
@@ -56,7 +57,7 @@ register_callback_for_filetype("cpp", function()
 	})
 end)
 
-register_callback_for_filetype("go", function()
+register_callback_for_filetype({ "go" }, function()
 	wk.register({
 		["<leader>cb"] = {
 			name = "+Go",

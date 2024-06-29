@@ -76,6 +76,26 @@ register_callback_for_filetype({ "go" }, function()
 	})
 end)
 
+local oil = require("oil")
+wk.register({
+	["<leader>o"] = {
+		name = "Browse folders",
+		["."] = {
+			function()
+				require("oil").open(nil)
+			end,
+			"Open parent folder",
+		},
+		c = {
+			function()
+				---@diagnostic disable-next-line: param-type-mismatch
+				oil.open(vim.fn.stdpath("config"))
+			end,
+			"Open config folder",
+		},
+	},
+}, { silent = true })
+
 -- Keymaps for navigator.
 wk.register({}, {
 	silent = true,

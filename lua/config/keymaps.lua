@@ -78,20 +78,20 @@ end)
 
 local oil = require("oil")
 wk.register({
-	["<leader>o"] = {
-		name = "Browse folders",
-		["."] = {
+	["<leader>e"] = {
+		name = "[e]xplore folders",
+		p = {
 			function()
 				require("oil").open(nil)
 			end,
-			"Open parent folder",
+			"Open [p]arent folder",
 		},
 		c = {
 			function()
 				---@diagnostic disable-next-line: param-type-mismatch
 				oil.open(vim.fn.stdpath("config"))
 			end,
-			"Open config folder",
+			"Open [c]onfig folder",
 		},
 	},
 }, { silent = true })

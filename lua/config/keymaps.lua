@@ -78,7 +78,7 @@ end)
 
 local oil = require("oil")
 wk.register({
-	["<leader>e"] = {
+	["<leader>E"] = {
 		name = "[e]xplore folders",
 		p = {
 			function()

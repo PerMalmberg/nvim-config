@@ -8,3 +8,5 @@ opt.expandtab = false -- Don't fill with spaces
 opt.spell = true
 opt.spelllang = "en_us"
 opt.vb = true
+opt.fileencoding = "utf-8"
+opt.encoding = "utf-8"

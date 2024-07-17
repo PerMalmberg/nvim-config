@@ -39,7 +39,7 @@ register_callback_for_filetype({ "cpp", "cmake" }, function()
 		{ "<leader>cbg", "<cmd>CMakeGenerate<CR>", desc = "Generate" },
 		{ "<leader>cbs", "<cmd>CMakeSelectConfigurePreset<CR>", desc = "Select Configure Preset" },
 		{ "<leader>cbc", "<cmd>CMakeClean<CR>", desc = "Clean" },
-		{ "<leader>cbe", desc = "<cmd>CMakeOpenExecutor<CR>", "Show Output" },
+		{ "<leader>cbe", "<cmd>CMakeOpenExecutor<CR>", desc = "Show Output" },
 		{ "<leader>cbE", "<cmd>CMakeCloseExecutor<CR>", desc = "Close Output" },
 	})
 end)

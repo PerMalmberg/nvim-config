@@ -35,7 +35,7 @@ register_callback_for_filetype({ "cpp", "cmake" }, function()
 	wk.add({
 		{ "<leader>c", group = "CMake" },
 		{ "<leader>cbb", "<cmd>CMakeBuild<CR>", desc = "Build" },
-		{ "<leader>cbb", "<cmd>CMakeDebug<CR>", desc = "Debug" },
+		{ "<leader>cbd", "<cmd>CMakeDebug<CR>", desc = "Debug" },
 		{ "<leader>cbg", "<cmd>CMakeGenerate<CR>", desc = "Generate" },
 		{ "<leader>cbs", "<cmd>CMakeSelectConfigurePreset<CR>", desc = "Select Configure Preset" },
 		{ "<leader>cbc", "<cmd>CMakeClean<CR>", desc = "Clean" },

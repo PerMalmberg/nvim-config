@@ -22,81 +22,65 @@ local function register_callback_for_filetype(file_pattern, callback)
 	end
 end
 
-wk.register({
-	["<A-j>"] = { ":m .+1<CR>==", "Move line up" },
-	["<A-k>"] = { ":m .-2<CR>==", "Move line down" },
-}, { silent = true })
+wk.add({
+	{ "<A-j>", ":m .+1<CR>", desc = "Move line up" },
+	{ "<A-k>", ":m .-2<CR>", desc = "Move line down" },
+})
 
-wk.register({
-	["<A-j>"] = { ":m '>+1<CR>gv=gv", "Move line up" },
-	["<A-k>"] = { ":m '<-2<CR>gv=gv", "Move line down" },
-}, { silent = true, mode = "v" })
-
-wk.register({
-	["<leader>u"] = {
-		k = { "<cmd>Screenkey<cr>", "Toggle Screenkey" },
-	},
+wk.add({
+	{ "<leader>uk", "<cmd>Screenkey<cr>", desc = "Toggle Screenkey" },
 })
 
 register_callback_for_filetype({ "cpp", "cmake" }, function()
-	wk.register({
-		["<leader>cb"] = {
-			name = "+CMake",
-			b = { "<cmd>CMakeBuild<CR>", "Build" },
-			d = { "<cmd>CMakeDebug<CR>", "Debug" },
-			g = { "<cmd>CMakeGenerate<CR>", "Generate" },
-			s = { "<cmd>CMakeSelectConfigurePreset<CR>", "Select Configure Preset" },
-			c = { "<cmd>CMakeClean<CR>", "Clean" },
-			e = { "<cmd>CMakeOpenExecutor<CR>", "Show Output" },
-			E = { "<cmd>CMakeCloseExecutor<CR>", "Close Output" },
-		},
-		{
-			buffer = 0,
-			silent = true,
-		},
+	wk.add({
+		{ "<leader>c", group = "CMake" },
+		{ "<leader>cbb", "<cmd>CMakeBuild<CR>", desc = "Build" },
+		{ "<leader>cbd", "<cmd>CMakeDebug<CR>", desc = "Debug" },
+		{ "<leader>cbg", "<cmd>CMakeGenerate<CR>", desc = "Generate" },
+		{ "<leader>cbs", "<cmd>CMakeSelectConfigurePreset<CR>", desc = "Select Configure Preset" },
+		{ "<leader>cbc", "<cmd>CMakeClean<CR>", desc = "Clean" },
+		{ "<leader>cbe", "<cmd>CMakeOpenExecutor<CR>", desc = "Show Output" },
+		{ "<leader>cbE", "<cmd>CMakeCloseExecutor<CR>", desc = "Close Output" },
 	})
 end)
 
 register_callback_for_filetype({ "go" }, function()
-	wk.register({
-		["<leader>cb"] = {
-			name = "+Go",
-			b = { ":GoBuild %:h<CR>", "Build" },
-			c = { ":GoCoverage -p<CR>", "Coverage" },
-			i = { ":GoImports<CR>", "Imports" },
-			t = { ":GoTestPkg<CR>", "Test package" },
-			s = { ":lua require('go.alternate').switch(true, '')<CR>" },
-			v = { ":lua require('go.alternate').switch(true, 'vsplit')<CR>", "Open test vertically." },
-			h = { ":lua require('go.alternate').switch(true, 'ssplit')<CR>", "Open test horizontally." },
+	wk.add({
+		{ "<leader>c", group = "Go" },
+		{ "<leader>cbb", ":GoBuild %:h<CR>", desc = "Build" },
+		{ "<leader>cbc", ":GoCoverage -p<CR>", desc = "Coverage" },
+		{ "<leader>cbi", desc = ":GoImports<CR>", "Imports" },
+		{ "<leader>cbt", desc = ":GoTestPkg<CR>", "Test package" },
+		{ "<leader>cbs", desc = ":lua require('go.alternate').switch(true, '')<CR>" },
+		{
+			"<leader>cbv",
+			"Open test vertically.",
+			desc = ":lua require('go.alternate').switch(true, 'vsplit')<CR>",
 		},
 		{
-			buffer = 0,
-			silent = true,
+			"<leader>cbh",
+			"Open test horizontally.",
+			desc = ":lua require('go.alternate').switch(true, 'ssplit')<CR>",
 		},
 	})
 end)
 
 local oil = require("oil")
-wk.register({
-	["<leader>E"] = {
-		name = "[e]xplore folders",
-		p = {
-			function()
-				require("oil").open(nil)
-			end,
-			"Open [p]arent folder",
-		},
-		c = {
-			function()
-				---@diagnostic disable-next-line: param-type-mismatch
-				oil.open(vim.fn.stdpath("config"))
-			end,
-			"Open [c]onfig folder",
-		},
+wk.add({
+	{ "<leader>E", group = "[E]xplore folders" },
+	{
+		"<leader>Ep",
+		function()
+			require("oil").open(nil)
+		end,
+		desc = "Open [p]arent folder",
 	},
-}, { silent = true })
-
--- Keymaps for navigator.
-wk.register({}, {
-	silent = true,
+	{
+		"<leader>Ec",
+		function()
+			---@diagnostic disable-next-line: param-type-mismatch
+			oil.open(vim.fn.stdpath("config"))
+		end,
+		desc = "Open [c]onfig folder",
+	},
 })

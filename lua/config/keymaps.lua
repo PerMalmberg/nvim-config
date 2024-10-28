@@ -33,32 +33,32 @@ wk.add({
 
 register_callback_for_filetype({ "cpp", "cmake" }, function()
 	wk.add({
-		{ "<leader>c", group = "CMake" },
-		{ "<leader>cbb", "<cmd>CMakeBuild<CR>", desc = "Build" },
-		{ "<leader>cbd", "<cmd>CMakeDebug<CR>", desc = "Debug" },
-		{ "<leader>cbg", "<cmd>CMakeGenerate<CR>", desc = "Generate" },
-		{ "<leader>cbs", "<cmd>CMakeSelectConfigurePreset<CR>", desc = "Select Configure Preset" },
-		{ "<leader>cbc", "<cmd>CMakeClean<CR>", desc = "Clean" },
-		{ "<leader>cbe", "<cmd>CMakeOpenExecutor<CR>", desc = "Show Output" },
-		{ "<leader>cbE", "<cmd>CMakeCloseExecutor<CR>", desc = "Close Output" },
+		{ "<leader>C", group = "CMake" },
+		{ "<leader>Cb", "<cmd>CMakeBuild<CR>", desc = "Build" },
+		{ "<leader>Cd", "<cmd>CMakeDebug<CR>", desc = "Debug" },
+		{ "<leader>Cg", "<cmd>CMakeGenerate<CR>", desc = "Generate" },
+		{ "<leader>Cs", "<cmd>CMakeSelectConfigurePreset<CR>", desc = "Select Configure Preset" },
+		{ "<leader>Cc", "<cmd>CMakeClean<CR>", desc = "Clean" },
+		{ "<leader>Ce", "<cmd>CMakeOpenExecutor<CR>", desc = "Show Output" },
+		{ "<leader>CE", "<cmd>CMakeCloseExecutor<CR>", desc = "Close Output" },
 	})
 end)
 
 register_callback_for_filetype({ "go" }, function()
 	wk.add({
-		{ "<leader>c", group = "Go" },
-		{ "<leader>cbb", ":GoBuild %:h<CR>", desc = "Build" },
-		{ "<leader>cbc", ":GoCoverage -p<CR>", desc = "Coverage" },
-		{ "<leader>cbi", desc = ":GoImports<CR>", "Imports" },
-		{ "<leader>cbt", desc = ":GoTestPkg<CR>", "Test package" },
-		{ "<leader>cbs", desc = ":lua require('go.alternate').switch(true, '')<CR>" },
+		{ "<leader>C", group = "Go" },
+		{ "<leader>Cb", ":GoBuild %:h<CR>", desc = "Build" },
+		{ "<leader>Cc", ":GoCoverage -p<CR>", desc = "Coverage" },
+		{ "<leader>Ci", desc = ":GoImports<CR>", "Imports" },
+		{ "<leader>Ct", desc = ":GoTestPkg<CR>", "Test package" },
+		{ "<leader>Cs", desc = ":lua require('go.alternate').switch(true, '')<CR>" },
 		{
-			"<leader>cbv",
+			"<leader>Cv",
 			"Open test vertically.",
 			desc = ":lua require('go.alternate').switch(true, 'vsplit')<CR>",
 		},
 		{
-			"<leader>cbh",
+			"<leader>ch",
 			"Open test horizontally.",
 			desc = ":lua require('go.alternate').switch(true, 'ssplit')<CR>",
 		},

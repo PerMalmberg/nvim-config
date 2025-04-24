@@ -8,12 +8,21 @@
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 vim.api.nvim_create_autocmd("FileType", {
-  desc = "Ensures spaces are used on CMake files instead of tabs",
+  desc = "Set file fomatting options",
   callback = function(event)
+    -- Default settings
+    vim.o.expandtab = false
+    vim.o.tabstop = 4 -- Number of spaces tabs count for
+    vim.o.shiftwidth = 0 -- Use 'tabstop'
+    vim.o.expandtab = false -- Don't fill with spaces
+
     if event.match == "cmake" then
       vim.o.expandtab = true
       vim.o.tabstop = 2
       vim.o.shiftwidth = 0
+    elseif event.match == "yaml" then
+      vim.o.expandtab = true
+      vim.o.tabstop = 2
     elseif event.match == "json" then
       vim.o.tabstop = 2
       vim.o.shiftwidth = 0

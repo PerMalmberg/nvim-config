@@ -40,18 +40,8 @@ register_callback_for_filetype({ "go" }, function()
     { "<leader>C", group = "Go" },
     { "<leader>Cb", ":GoBuild %:h<CR>", desc = "Build" },
     { "<leader>Cc", ":GoCoverage -p<CR>", desc = "Coverage" },
-    { "<leader>Ci", desc = ":GoImports<CR>", "Imports" },
-    { "<leader>Ct", desc = ":GoTestPkg<CR>", "Test package" },
-    { "<leader>Cs", desc = ":lua require('go.alternate').switch(true, '')<CR>" },
-    {
-      "<leader>Cv",
-      "Open test vertically.",
-      desc = ":lua require('go.alternate').switch(true, 'vsplit')<CR>",
-    },
-    {
-      "<leader>ch",
-      "Open test horizontally.",
-      desc = ":lua require('go.alternate').switch(true, 'ssplit')<CR>",
-    },
+    { "<leader>Ci", ":GoImports<CR>", desc = "Imports" },
+    { "<leader>Ct", ":GoTestPkg<CR>", desc = "Test package" },
+    { "<leader>Cf", ":GoTestFile<CR>", desc = "Test file" },
   })
 end)

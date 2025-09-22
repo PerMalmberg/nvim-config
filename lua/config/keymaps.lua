@@ -41,7 +41,8 @@ register_callback_for_filetype({ "go" }, function()
     { "<leader>Cb", ":GoBuild %:h<CR>", desc = "Build" },
     { "<leader>Cc", ":GoCoverage -p<CR>", desc = "Coverage" },
     { "<leader>Ci", ":GoImports<CR>", desc = "Imports" },
-    { "<leader>Ct", ":GoTestPkg<CR>", desc = "Test package" },
-    { "<leader>Cf", ":GoTestFile<CR>", desc = "Test file" },
+    { "<leader>Ct", ":GoTestPkg<CR>", desc = "Run test on package" },
+    { "<leader>Cf", ":GoTestFile<CR>", desc = "Run test on file" },
+    { "<leader>ch", ":GoAlt<CR>", desc = "Open Test file" },
   })
 end)

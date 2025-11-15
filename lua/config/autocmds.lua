@@ -26,6 +26,9 @@ vim.api.nvim_create_autocmd("FileType", {
     elseif event.match == "json" then
       vim.o.tabstop = 2
       vim.o.shiftwidth = 0
+    elseif event.match == "markdown" then
+      vim.o.tabstop = 2
+      vim.o.expandtab = true
     end
   end,
 })

@@ -38,7 +38,7 @@ end)
 register_callback_for_filetype({ "go" }, function()
   wk.add({
     { "<leader>C", group = "Go" },
-    { "<leader>Cb", ":GoBuild %:h<CR>", desc = "Build" },
+    { "<leader>Cb", ":GoBuild<CR>", desc = "Build" },
     { "<leader>Cc", ":GoCoverage -p<CR>", desc = "Coverage" },
     { "<leader>Ci", ":GoImports<CR>", desc = "Imports" },
     { "<leader>Ct", ":GoTestPkg<CR>", desc = "Run test on package" },
@@ -46,3 +46,9 @@ register_callback_for_filetype({ "go" }, function()
     { "<leader>ch", ":GoAlt<CR>", desc = "Open Test file" },
   })
 end)
+
+wk.add({
+  { "<leader>a", group = "AI" },
+  { "<leader>aa", ":CodeCompanionChat Toggle<CR>", desc = "Toggle Chat" },
+  { "<leader>am", ":MCPHub<CR>", desc = "Toggle MCPHub" },
+})

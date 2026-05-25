@@ -12,5 +12,5 @@ vim.o.shellquote = ""
 vim.o.shellxquote = ""
 
 require("config.lazy")
-
+require("config.options")
 vim.cmd("colorscheme gruvdark")

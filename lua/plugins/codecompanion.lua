@@ -7,6 +7,15 @@ return {
     "nvim-treesitter/nvim-treesitter",
   },
   opts = {
+    opts = {
+      chat = {
+        autoload = { "default" },
+        enabled = true,
+      },
+      opts = {
+        log_level = "DEBUG",
+      },
+    },
     extensions = {
       mcphub = {
         callback = "mcphub.extensions.codecompanion",
@@ -29,7 +38,7 @@ return {
         tools = {
           ["run_command"] = {
             opts = {
-              require_approval_before = false,
+              require_approval_before = true,
             },
           },
         },
@@ -58,12 +67,6 @@ return {
         description = "Frontend - Finalizer",
         files = {
           ".github/agents/dependency-finalizer.agent.md",
-        },
-      },
-      opts = {
-        chat = {
-          autoload = { "default" },
-          enabled = true,
         },
       },
     },

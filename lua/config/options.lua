@@ -8,6 +8,3 @@ opt.vb = true
 opt.fileencoding = "utf-8"
 opt.encoding = "utf-8"
 
--- 	https://github.com/CopilotC-Nvim/CopilotChat.nvim
-vim.g.copilot_no_tab_map = true
-vim.keymap.set("i", "<S-Tab>", 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })

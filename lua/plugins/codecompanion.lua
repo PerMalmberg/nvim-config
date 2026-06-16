@@ -1,6 +1,6 @@
 return {
   "olimorris/codecompanion.nvim",
-  version = "^19.0.0",
+  --  version = "^19.0.0",
   dependencies = {
     "ravitemer/mcphub.nvim",
     "nvim-lua/plenary.nvim",

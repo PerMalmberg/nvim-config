@@ -52,3 +52,15 @@ wk.add({
   { "<leader>aa", ":CodeCompanionChat Toggle<CR>", desc = "Toggle Chat" },
   { "<leader>am", ":MCPHub<CR>", desc = "Toggle MCPHub" },
 })
+
+wk.add({
+  { "<leader>e", ":Oil<CR>", desc = "Open Parent folder" },
+  {
+    "<leader>E",
+    function()
+      local root = vim.fs.root(0, { ".git", "Makefile" })
+      vim.cmd("Oil " .. (root or vim.fn.getcwd()))
+    end,
+    desc = "Open project root",
+  },
+})

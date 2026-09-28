@@ -7,27 +7,22 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
-vim.api.nvim_create_autocmd("FileType", {
-  desc = "Set file fomatting options",
-  callback = function(event)
-    -- Default settings
-    vim.o.tabstop = 4 -- Number of spaces tabs count for
-    vim.o.shiftwidth = 0 -- Use 'tabstop'
-    vim.o.expandtab = false -- Don't fill with spaces
+local two_space_filetypes = {
+  cmake = true,
+  json = true,
+  lua = true,
+  markdown = true,
+  yaml = true,
+}
 
-    if event.match == "cmake" then
-      vim.o.expandtab = true
-      vim.o.tabstop = 2
-    elseif event.match == "yaml" then
-      vim.o.expandtab = true
-      vim.o.tabstop = 2
-    elseif event.match == "json" then
-      vim.o.tabstop = 2
-    elseif event.match == "markdown" then
-      vim.o.tabstop = 2
-      vim.o.expandtab = true
-    elseif event.match == "cpp" then
-      vim.o.expandtab = true
-    end
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Set file formatting options",
+  callback = function(event)
+    -- Use buffer-local options so opening a file does not change other buffers.
+    local buffer_options = vim.bo[event.buf]
+
+    buffer_options.tabstop = two_space_filetypes[event.match] and 2 or 4
+    buffer_options.shiftwidth = 0 -- Use 'tabstop'
+    buffer_options.expandtab = true -- Fill with spaces
   end,
 })

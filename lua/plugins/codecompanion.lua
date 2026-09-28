@@ -6,7 +6,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
   },
   config = function()
-    local log = require("codecompanion.utils.log")
+    -- local log = require("codecompanion.utils.log")
     require("codecompanion").setup({
       opts = {
         log_level = "DEBUG",

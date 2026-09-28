@@ -50,7 +50,6 @@ end)
 wk.add({
   { "<leader>a", group = "AI" },
   { "<leader>aa", ":CodeCompanionChat Toggle<CR>", desc = "Toggle Chat" },
-  { "<leader>am", ":MCPHub<CR>", desc = "Toggle MCPHub" },
 })
 
 wk.add({

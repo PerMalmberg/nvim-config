@@ -1,5 +1,5 @@
 return {
-  "darianmorat/gruvdark.nvim",
+  "darianmorat/shibumi.nvim",
   lazy = false,
   priority = 1000,
   opts = {},

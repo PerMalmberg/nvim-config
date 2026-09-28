@@ -13,7 +13,7 @@ vim.o.shellxquote = ""
 
 require("config.lazy")
 require("config.options")
-vim.cmd("colorscheme gruvdark")
+vim.cmd("colorscheme shibumi")
 
 --- Configure the ctags-lsp server
 --- Requires ctags and ctags-lsp (via Mason) to be installed and in your PATH

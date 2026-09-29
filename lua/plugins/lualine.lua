@@ -5,6 +5,14 @@ return {
     "olimorris/codecompanion.nvim",
   },
   config = function()
+    local is_recording = function()
+      local reg = vim.fn.reg_recording()
+      if reg == "" then
+        return ""
+      end
+      return "Rec to: " .. reg
+    end
+
     local function cc_status()
       local ok, cc = pcall(require, "codecompanion")
       if not ok then
@@ -103,6 +111,7 @@ return {
               newfile = "[New]",
             },
           },
+          { is_recording, color = { fg = "#ff0000" } },
         },
 
         lualine_x = {

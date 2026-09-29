@@ -60,7 +60,7 @@ return {
               },
               schema = {
                 model = {
-                  default = "GPT-5.6 Luna Bedrock",
+                  default = "GPT-6 Luna Bedrock",
                 },
               },
             })

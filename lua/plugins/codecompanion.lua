@@ -32,8 +32,15 @@ return {
       adapters = {
         http = {
           opts = {
-            show_presets = false, -- Hide default adapters
+            show_presets = true, -- Hide default adapters
             hidden = {
+              anthropic = true,
+              azure_openai = true,
+              deepseek = true,
+              gemini = true,
+              gemini_interactions = true,
+              githubmodels = true,
+              huggingface = true,
               auggie_cli = true,
               cagent = true,
               claude_code = true,
@@ -43,10 +50,19 @@ return {
               cursor_cli = true,
               gemini_cli = true,
               goose = true,
+              kimi = true,
               kimi_cli = true,
               kiro = true,
+              mistral = true,
               mistral_vibe = true,
+              novita = true,
+              ollama = true,
+              openai = true,
+              openai_responses = true,
+              openrouter = true,
               opencode = true,
+              serply = true,
+              xai = true,
             },
           },
           litellm_router = function()

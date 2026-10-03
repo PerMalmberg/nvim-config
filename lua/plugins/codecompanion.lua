@@ -65,9 +65,10 @@ return {
               xai = true,
             },
           },
-          litellm_router = function()
+          litellm = function()
             local api_prefix = "/v1"
             return require("codecompanion.adapters").extend("openai_compatible", {
+              formatted_name = "LiteLLM",
               env = {
                 api_key = os.getenv("LITEROUTER_API_KEY"),
                 url = "https://litellm.internal-ai-models.flexeraeng.com",
@@ -85,13 +86,13 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "litellm_router",
+          adapter = "litellm",
         },
         inline = {
-          adapter = "litellm_router",
+          adapter = "litellm",
         },
         agent = {
-          adapter = "litellm_router",
+          adapter = "litellm",
         },
       },
       rules = {

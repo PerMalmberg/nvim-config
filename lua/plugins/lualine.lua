@@ -49,7 +49,7 @@ return {
       local tokens = data.tokens or 0
       local tools = data.tools or 0
 
-      return ("󰚩 %s · Cy:%s · Tok:%s · Tool: %d"):format(model, cycles, tokens, tools)
+      return ("󰚩 %s (%s) · Cy:%s · Tok:%s · Tool: %d"):format(model, adapter.name or "", cycles, tokens, tools)
     end
 
     require("lualine").setup({

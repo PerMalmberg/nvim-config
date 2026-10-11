@@ -72,8 +72,6 @@ return {
               env = {
                 api_key = os.getenv("LITEROUTER_API_KEY"),
                 url = "https://litellm.internal-ai-models.flexeraeng.com",
-                models_endpoint = api_prefix .. "/models",
-                chat_url = api_prefix .. "/chat/completions",
               },
               schema = {
                 model = {

@@ -63,3 +63,6 @@ wk.add({
     desc = "Open project root",
   },
 })
+
+-- Esc to exit edit mode in terminal
+vim.cmd([[tnoremap <Esc> <C-\><C-n>]])

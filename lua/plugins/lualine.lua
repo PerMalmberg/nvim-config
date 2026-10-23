@@ -5,6 +5,9 @@ return {
     "olimorris/codecompanion.nvim",
   },
   config = function()
+    local working_chats = {}
+    local active_requests = {}
+
     local is_recording = function()
       local reg = vim.fn.reg_recording()
       if reg == "" then
@@ -13,17 +16,16 @@ return {
       return "Rec to: " .. reg
     end
 
-    local function cc_status()
+    local function cc_status_parts()
       local ok, cc = pcall(require, "codecompanion")
       if not ok then
-        return ""
+        return "", ""
       end
 
       local metadata = _G.codecompanion_chat_metadata
       local chat = cc.last_chat()
-
       if not metadata or not chat then
-        return ""
+        return "", ""
       end
 
       local chat_visible = false
@@ -34,13 +36,9 @@ return {
         end
       end
 
-      if not chat_visible then
-        return ""
-      end
-
       local data = metadata[chat.bufnr]
-      if not data then
-        return ""
+      if not chat_visible or not data then
+        return "", ""
       end
 
       local adapter = data.adapter or {}
@@ -48,8 +46,20 @@ return {
       local cycles = data.cycles or 0
       local tokens = data.tokens or 0
       local tools = data.tools or 0
+      local working = working_chats[chat.bufnr] or active_requests[chat.bufnr]
 
-      return ("󰚩 %s (%s) · Cy:%s · Tok:%s · Tool: %d"):format(model, adapter.name or "", cycles, tokens, tools)
+      return ("󰚩 %s (%s) · Cy:%s · Tok:%s · Tool: %d"):format(model, adapter.name or "", cycles, tokens, tools),
+        working and " · ⟳ Agent working" or ""
+    end
+
+    local function cc_status()
+      local status = cc_status_parts()
+      return status
+    end
+
+    local function cc_working_status()
+      local _, indicator = cc_status_parts()
+      return indicator
     end
 
     require("lualine").setup({
@@ -137,6 +147,7 @@ return {
 
         lualine_y = {
           cc_status,
+          { cc_working_status, color = { fg = "#ff69b4" } },
         },
 
         lualine_z = {
@@ -158,14 +169,41 @@ return {
 
     vim.api.nvim_create_autocmd("User", {
       pattern = {
-        "CodeCompanionChatCreated",
         "CodeCompanionChatClosed",
+        "CodeCompanionChatSubmitted",
+        "CodeCompanionChatDone",
+        "CodeCompanionChatStopped",
         "CodeCompanionRequestStarted",
         "CodeCompanionRequestFinished",
         "CodeCompanionInlineStarted",
         "CodeCompanionInlineFinished",
       },
-      callback = function()
+      callback = function(args)
+        local data = args.data or {}
+        local bufnr = data.bufnr or data.buf or args.buf
+        local event = args.match
+
+        if bufnr then
+          if event == "CodeCompanionChatSubmitted" then
+            working_chats[bufnr] = true
+          elseif
+            event == "CodeCompanionChatDone"
+            or event == "CodeCompanionChatStopped"
+            or event == "CodeCompanionChatClosed"
+          then
+            working_chats[bufnr] = nil
+            active_requests[bufnr] = nil
+          elseif event == "CodeCompanionRequestStarted" then
+            active_requests[bufnr] = true
+          elseif event == "CodeCompanionRequestFinished" then
+            active_requests[bufnr] = nil
+          elseif event == "CodeCompanionInlineStarted" then
+            active_requests[bufnr] = true
+          elseif event == "CodeCompanionInlineFinished" then
+            active_requests[bufnr] = nil
+          end
+        end
+
         vim.schedule(function()
           vim.cmd("redrawstatus")
         end)

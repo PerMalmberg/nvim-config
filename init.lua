@@ -14,12 +14,3 @@ vim.o.shellxquote = ""
 require("config.lazy")
 require("config.options")
 vim.cmd("colorscheme shibumi")
-
---- Configure the ctags-lsp server
---- Requires ctags and ctags-lsp (via Mason) to be installed and in your PATH
---- https://github.com/universal-ctags/ctags#how-to-build-and-install
-vim.lsp.config("ctags_lsp", {
-  cmd = { "ctags-lsp" },
-  filetypes = { "cpp", "c" }, -- Change this to the language(s) nvim should attach the LSP to
-})
-vim.lsp.enable("ctags_lsp")

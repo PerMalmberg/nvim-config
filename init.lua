@@ -14,3 +14,6 @@ vim.o.shellxquote = ""
 require("config.lazy")
 require("config.options")
 vim.cmd("colorscheme shibumi")
+
+-- Set default file format to Unix for all files
+vim.opt.fileformat = "unix"
